@@ -1,5 +1,5 @@
 {
-  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier", "@blueprintjs/tslint-config/blueprint-rules"],
   "linterOptions": {
     "exclude": [
       "config/**/*.js",
