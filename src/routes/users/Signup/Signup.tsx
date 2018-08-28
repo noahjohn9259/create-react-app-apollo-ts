@@ -2,9 +2,9 @@ import * as React from "react";
 import { Container } from "reactstrap";
 import { Card, Elevation } from "@blueprintjs/core";
 import styled from "styled-components";
-import Helmet from "react-helmet";
 import { Link } from "react-router-dom";
-import FormSignin from "./FormSignin";
+import FormSignup from "./FormSignup";
+import Helmet from "react-helmet";
 import ThemeContext, { Color } from "../../../theme-context";
 
 const Wrapper = styled.div`
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
 `;
 
-class Signin extends React.PureComponent<any, any> {
+class Signup extends React.PureComponent<any, any> {
   handleSubmit = async (values: any) => {
     return values;
   };
@@ -23,7 +23,7 @@ class Signin extends React.PureComponent<any, any> {
           return (
             <div>
               <Helmet>
-                <title>Sign in</title>
+                <title>Sign Up</title>
               </Helmet>
               <Container className="py-5">
                 <Wrapper>
@@ -45,10 +45,9 @@ class Signin extends React.PureComponent<any, any> {
                     />
                   </p>
                   <Card elevation={Elevation.ONE}>
-                    <FormSignin submit={this.handleSubmit} />
+                    <FormSignup submit={this.handleSubmit} />
                     <div className="text-center">
-                      Don't have an account?{" "}
-                      <Link to="/signup">Sign up for free</Link>
+                      Already have an account? <Link to="/signin">Sign in</Link>
                     </div>
                   </Card>
                 </Wrapper>
@@ -61,4 +60,4 @@ class Signin extends React.PureComponent<any, any> {
   }
 }
 
-export default Signin;
+export default Signup;

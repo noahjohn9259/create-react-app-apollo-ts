@@ -3,9 +3,11 @@ import { Button, FormGroup } from "@blueprintjs/core";
 import * as yup from "yup";
 import { withFormik, Field, FormikErrors, FormikProps } from "formik";
 
-export interface IFormSigninProps {}
+export interface IFormSignupProps {}
 
 interface IFormValues {
+  firstname: string;
+  lastname?: string;
   username: string;
   password: string;
 }
@@ -19,6 +21,36 @@ const InnerForm = (props: FormikProps<IFormValues> & IProps) => {
   return (
     <div>
       <form onSubmit={handleSubmit} noValidate>
+        <FormGroup
+          helperText={errors.firstname && touched.firstname && errors.firstname}
+          label="First name"
+          intent={errors.firstname && touched.firstname ? "danger" : "none"}
+          labelFor="text-input"
+        >
+          <div className="bp3-input-group">
+            <Field
+              type="text"
+              name="firstname"
+              id="firstname"
+              className="bp3-input"
+            />
+          </div>
+        </FormGroup>
+        <FormGroup
+          helperText={errors.lastname && touched.lastname && errors.lastname}
+          label="Last name"
+          intent={errors.lastname && touched.lastname ? "danger" : "none"}
+          labelFor="text-input"
+        >
+          <div className="bp3-input-group">
+            <Field
+              type="text"
+              name="lastname"
+              id="lastname"
+              className="bp3-input"
+            />
+          </div>
+        </FormGroup>
         <FormGroup
           helperText={errors.username && touched.username && errors.username}
           label="Username"
@@ -64,14 +96,18 @@ const InnerForm = (props: FormikProps<IFormValues> & IProps) => {
   );
 };
 
-const FormSignin = withFormik<IProps, IFormValues>({
+const FormSignup = withFormik<IProps, IFormValues>({
   mapPropsToValues: () => {
     return {
+      firstname: "",
+      lastname: "",
       username: "",
       password: ""
     };
   },
   validationSchema: yup.object().shape({
+    firstname: yup.string().required("First name is required."),
+    lastname: yup.string(),
     username: yup.string().required("Username is required."),
     password: yup.string().required("Password is required")
   }),
@@ -86,4 +122,4 @@ const FormSignin = withFormik<IProps, IFormValues>({
   }
 })(InnerForm);
 
-export default FormSignin;
+export default FormSignup;
